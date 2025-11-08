@@ -1,0 +1,1123 @@
+html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر السلامة والوقاية</title>
+    <style>
+        /* أنماط CSS الأساسية */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* رأس الصفحة */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .lang-switch, .currency-switch {
+            margin-left: 15px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .lang-switch:hover, .currency-switch:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* شريط البحث */
+        .search-bar {
+            background-color: var(--light-color);
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-box {
+            width: 70%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .search-btn {
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* الفئات */
+        .categories {
+            padding: 20px 0;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .categories-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .category {
+            text-align: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+        
+        .category:hover {
+            background-color: var(--light-color);
+            transform: translateY(-3px);
+        }
+        
+        .category.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* المنتجات */
+        .products-section {
+            padding: 30px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* لوحة الإدارة */
+        .admin-panel {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .admin-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-btn {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* نموذج الإدارة */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .admin-modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .admin-tab.active {
+            border-bottom: 3px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .admin-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #ddd;
+            color: #333;
+        }
+        
+        .btn-danger {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .user-actions {
+                margin-top: 15px;
+            }
+            
+            .search-box {
+                width: 60%;
+            }
+            
+            .categories-container {
+                justify-content: center;
+            }
+            
+            .category {
+                margin: 5px;
+            }
+            
+            .admin-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .admin-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">متجر <span>السلامة</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-lang="ar">الرئيسية</a></li>
+                    <li><a href="#" class="nav-link" data-lang="ar">منتجاتنا</a></li>
+                    <li><a href="#" class="nav-link" data-lang="ar">من نحن</a></li>
+                    <li><a href="#" class="nav-link" data-lang="ar">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <div class="lang-switch" id="langSwitch">English</div>
+                <div class="currency-switch" id="currencySwitch">USD</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط البحث -->
+    <section class="search-bar">
+        <div class="container search-container">
+            <input type="text" class="search-box" id="searchInput" placeholder="ابحث عن المنتجات...">
+            <button class="search-btn" id="searchBtn">بحث</button>
+        </div>
+    </section>
+
+    <!-- الفئات -->
+    <section class="categories">
+        <div class="container categories-container">
+            <div class="category active" data-category="all">جميع المنتجات</div>
+            <div class="category" data-category="ppe">معدات الحماية الشخصية (PPE)</div>
+            <div class="category" data-category="industrial">السلامة الصناعية</div>
+            <div class="category" data-category="work">السلامة في مواقع العمل</div>
+            <div class="category" data-category="firstaid">الإسعافات الأولية</div>
+            <div class="category" data-category="training">التوعية والتدريب</div>
+        </div>
+    </section>
+
+    <!-- المنتجات -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- سيتم إضافة المنتجات ديناميكياً بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- لوحة الإدارة -->
+    <section class="admin-panel">
+        <div class="container admin-container">
+            <h3>لوحة تحكم الإدارة</h3>
+            <button class="admin-btn" id="adminLoginBtn">تسجيل الدخول للإدارة</button>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المتجر</h3>
+                    <p>متجر متخصص في منتجات السلامة والوقاية الشخصية بمختلف أنواعها، نقدم منتجات عالية الجودة بأسعار تنافسية.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">منتجاتنا</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <ul>
+                        <li>البريد الإلكتروني: info@safety-store.com</li>
+                        <li>الهاتف: +964 123 456 7890</li>
+                        <li>العنوان: بغداد، العراق</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 متجر السلامة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نموذج الإدارة -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>لوحة تحكم الإدارة</h2>
+            
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="products">إدارة المنتجات</div>
+                <div class="admin-tab" data-tab="categories">إدارة الفئات</div>
+                <div class="admin-tab" data-tab="admins">إدارة المسؤولين</div>
+            </div>
+            
+            <!-- إدارة المنتجات -->
+            <div class="admin-tab-content active" id="productsTab">
+                <h3>إضافة منتج جديد</h3>
+                <form class="admin-form" id="addProductForm">
+                    <div class="form-group">
+                        <label for="productName">اسم المنتج (عربي)</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productNameEn">اسم المنتج (إنجليزي)</label>
+                        <input type="text" id="productNameEn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">الفئة</label>
+                        <select id="productCategory" required>
+                            <option value="ppe">معدات الحماية الشخصية (PPE)</option>
+                            <option value="industrial">السلامة الصناعية</option>
+                            <option value="work">السلامة في مواقع العمل</option>
+                            <option value="firstaid">الإسعافات الأولية</option>
+                            <option value="training">التوعية والتدريب</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">السعر</label>
+                        <input type="number" id="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCurrency">العملة</label>
+                        <select id="productCurrency" required>
+                            <option value="IQD">دينار عراقي</option>
+                            <option value="USD">دولار أمريكي</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="productDescription">الوصف (عربي)</label>
+                        <textarea id="productDescription" required></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="productDescriptionEn">الوصف (إنجليزي)</label>
+                        <textarea id="productDescriptionEn" required></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="productImage">صورة المنتج (رابط URL)</label>
+                        <input type="text" id="productImage" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelProduct">إلغاء</button>
+                        <button type="submit" class="btn btn-primary">إضافة المنتج</button>
+                    </div>
+                </form>
+                
+                <h3 style="margin-top: 30px;">المنتجات الحالية</h3>
+                <div id="productsList">
+                    <!-- سيتم عرض المنتجات الحالية هنا -->
+                </div>
+            </div>
+            
+            <!-- إدارة الفئات -->
+            <div class="admin-tab-content" id="categoriesTab">
+                <h3>إدارة الفئات</h3>
+                <p>هنا يمكنك إدارة فئات المنتجات المختلفة.</p>
+                <!-- يمكن إضافة المزيد من الوظائف لإدارة الفئات -->
+            </div>
+            
+            <!-- إدارة المسؤولين -->
+            <div class="admin-tab-content" id="adminsTab">
+                <h3>إضافة مسؤول جديد</h3>
+                <form class="admin-form" id="addAdminForm">
+                    <div class="form-group">
+                        <label for="adminName">اسم المسؤول</label>
+                        <input type="text" id="adminName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminEmail">البريد الإلكتروني</label>
+                        <input type="email" id="adminEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">كلمة المرور</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminRole">الدور</label>
+                        <select id="adminRole" required>
+                            <option value="admin">مسؤول</option>
+                            <option value="superadmin">مسؤول رئيسي</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelAdmin">إلغاء</button>
+                        <button type="submit" class="btn btn-primary">إضافة المسؤول</button>
+                    </div>
+                </form>
+                
+                <h3 style="margin-top: 30px;">المسؤولون الحاليون</h3>
+                <div id="adminsList">
+                    <!-- سيتم عرض المسؤولين الحاليين هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتجات الافتراضية
+        let products = [
+            {
+                id: 1,
+                name: "خوذة السلامة",
+                nameEn: "Safety Helmet",
+                category: "ppe",
+                price: 15000,
+                currency: "IQD",
+                description: "خوذة سلامة عالية الجودة للحماية من الاصطدامات والسقوط",
+                descriptionEn: "High-quality safety helmet for protection against impacts and falls",
+                image: "https://via.placeholder.com/300x200?text=Safety+Helmet"
+            },
+            {
+                id: 2,
+                name: "نظارات واقية",
+                nameEn: "Safety Goggles",
+                category: "ppe",
+                price: 8000,
+                currency: "IQD",
+                description: "نظارات واقية تحمي العينين من الجسيمات والمواد الكيميائية",
+                descriptionEn: "Protective goggles that shield eyes from particles and chemicals",
+                image: "https://via.placeholder.com/300x200?text=Safety+Goggles"
+            },
+            {
+                id: 3,
+                name: "طفاية حريق",
+                nameEn: "Fire Extinguisher",
+                category: "industrial",
+                price: 45000,
+                currency: "IQD",
+                description: "طفاية حريق متعددة الأغراض مناسبة للمنازل والمكاتب",
+                descriptionEn: "Multi-purpose fire extinguisher suitable for homes and offices",
+                image: "https://via.placeholder.com/300x200?text=Fire+Extinguisher"
+            },
+            {
+                id: 4,
+                name: "صندوق إسعافات أولية",
+                nameEn: "First Aid Kit",
+                category: "firstaid",
+                price: 25000,
+                currency: "IQD",
+                description: "صندوق إسعافات أولية شامل يحتوي على جميع الضروريات",
+                descriptionEn: "Comprehensive first aid kit containing all essentials",
+                image: "https://via.placeholder.com/300x200?text=First+Aid+Kit"
+            },
+            {
+                id: 5,
+                name: "قفازات واقية",
+                nameEn: "Protective Gloves",
+                category: "ppe",
+                price: 5000,
+                currency: "IQD",
+                description: "قفازات واقية متينة للحماية من المواد الكيميائية والحرارة",
+                descriptionEn: "Durable protective gloves for defense against chemicals and heat",
+                image: "https://via.placeholder.com/300x200?text=Protective+Gloves"
+            },
+            {
+                id: 6,
+                name: "دورة تدريبية في السلامة",
+                nameEn: "Safety Training Course",
+                category: "training",
+                price: 100,
+                currency: "USD",
+                description: "دورة تدريبية شاملة في إجراءات السلامة والوقاية",
+                descriptionEn: "Comprehensive training course in safety procedures and prevention",
+                image: "https://via.placeholder.com/300x200?text=Training+Course"
+            }
+        ];
+
+        // بيانات المسؤولين الافتراضية
+        let admins = [
+            { id: 1, name: "مدير النظام", email: "admin@safety.com", role: "superadmin" }
+        ];
+
+        // حالة التطبيق
+        let currentLanguage = "ar";
+        let currentCurrency = "IQD";
+        let currentCategory = "all";
+        let searchQuery = "";
+
+        // تهيئة التطبيق
+        document.addEventListener('DOMContentLoaded', function() {
+            // عرض المنتجات
+            renderProducts();
+            
+            // إعداد معالجات الأحداث
+            setupEventListeners();
+        });
+
+        // إعداد معالجات الأحداث
+        function setupEventListeners() {
+            // تبديل اللغة
+            document.getElementById('langSwitch').addEventListener('click', toggleLanguage);
+            
+            // تبديل العملة
+            document.getElementById('currencySwitch').addEventListener('click', toggleCurrency);
+            
+            // البحث
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // الفئات
+            document.querySelectorAll('.category').forEach(category => {
+                category.addEventListener('click', function() {
+                    document.querySelector('.category.active').classList.remove('active');
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    renderProducts();
+                });
+            });
+            
+            // لوحة الإدارة
+            document.getElementById('adminLoginBtn').addEventListener('click', openAdminPanel);
+            document.getElementById('closeModal').addEventListener('click', closeAdminPanel);
+            
+            // تبويبات الإدارة
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelector('.admin-tab.active').classList.remove('active');
+                    this.classList.add('active');
+                    
+                    document.querySelector('.admin-tab-content.active').classList.remove('active');
+                    document.getElementById(this.getAttribute('data-tab') + 'Tab').classList.add('active');
+                });
+            });
+            
+            // نماذج الإدارة
+            document.getElementById('addProductForm').addEventListener('submit', addProduct);
+            document.getElementById('addAdminForm').addEventListener('submit', addAdmin);
+            
+            document.getElementById('cancelProduct').addEventListener('click', function() {
+                document.getElementById('addProductForm').reset();
+            });
+            
+            document.getElementById('cancelAdmin').addEventListener('click', function() {
+                document.getElementById('addAdminForm').reset();
+            });
+        }
+
+        // تبديل اللغة
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === "ar" ? "en" : "ar";
+            document.getElementById('langSwitch').textContent = currentLanguage === "ar" ? "English" : "العربية";
+            
+            // تحديث النصوص في الصفحة
+            updateLanguage();
+        }
+
+        // تحديث النصوص بناءً على اللغة المحددة
+        function updateLanguage() {
+            // تحديث النصوص في التنقل
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const textKey = link.getAttribute('data-lang');
+                if (currentLanguage === "ar") {
+                    link.textContent = textKey === "ar" ? "الرئيسية" : "منتجاتنا";
+                } else {
+                    link.textContent = textKey === "ar" ? "Home" : "Products";
+                }
+            });
+            
+            // تحديث نص البحث
+            document.getElementById('searchInput').placeholder = currentLanguage === "ar" ? "ابحث عن المنتجات..." : "Search for products...";
+            document.getElementById('searchBtn').textContent = currentLanguage === "ar" ? "بحث" : "Search";
+            
+            // تحديث عناوين الأقسام
+            document.querySelector('.section-title').textContent = currentLanguage === "ar" ? "منتجاتنا" : "Our Products";
+            
+            // تحديث أسماء الفئات
+            document.querySelectorAll('.category').forEach(category => {
+                const categoryKey = category.getAttribute('data-category');
+                if (currentLanguage === "ar") {
+                    switch(categoryKey) {
+                        case 'all': category.textContent = "جميع المنتجات"; break;
+                        case 'ppe': category.textContent = "معدات الحماية الشخصية (PPE)"; break;
+                        case 'industrial': category.textContent = "السلامة الصناعية"; break;
+                        case 'work': category.textContent = "السلامة في مواقع العمل"; break;
+                        case 'firstaid': category.textContent = "الإسعافات الأولية"; break;
+                        case 'training': category.textContent = "التوعية والتدريب"; break;
+                    }
+                } else {
+                    switch(categoryKey) {
+                        case 'all': category.textContent = "All Products"; break;
+                        case 'ppe': category.textContent = "Personal Protective Equipment (PPE)"; break;
+                        case 'industrial': category.textContent = "Industrial Safety"; break;
+                        case 'work': category.textContent = "Workplace Safety"; break;
+                        case 'firstaid': category.textContent = "First Aid"; break;
+                        case 'training': category.textContent = "Awareness & Training"; break;
+                    }
+                }
+            });
+            
+            // إعادة عرض المنتجات مع التحديثات اللغوية
+            renderProducts();
+        }
+
+        // تبديل العملة
+        function toggleCurrency() {
+            currentCurrency = currentCurrency === "IQD" ? "USD" : "IQD";
+            document.getElementById('currencySwitch').textContent = currentCurrency;
+            renderProducts();
+        }
+
+        // البحث عن المنتجات
+        function performSearch() {
+            searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            renderProducts();
+        }
+
+        // عرض المنتجات
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+            
+            // تصفية المنتجات بناءً على الفئة والبحث
+            const filteredProducts = products.filter(product => {
+                const matchesCategory = currentCategory === 'all' || product.category === currentCategory;
+                const matchesSearch = searchQuery === '' || 
+                    product.name.toLowerCase().includes(searchQuery) || 
+                    product.nameEn.toLowerCase().includes(searchQuery) ||
+                    product.description.toLowerCase().includes(searchQuery) ||
+                    product.descriptionEn.toLowerCase().includes(searchQuery);
+                
+                return matchesCategory && matchesSearch;
+            });
+            
+            // عرض المنتجات المصفاة
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                // تحويل السعر إذا لزم الأمر
+                let displayPrice = product.price;
+                let displayCurrency = product.currency;
+                
+                if (currentCurrency !== product.currency) {
+                    if (currentCurrency === "IQD" && product.currency === "USD") {
+                        displayPrice = product.price * 1450; // سعر الصرف الافتراضي
+                        displayCurrency = "IQD";
+                    } else if (currentCurrency === "USD" && product.currency === "IQD") {
+                        displayPrice = product.price / 1450;
+                        displayCurrency = "USD";
+                    }
+                }
+                
+                // تنسيق السعر
+                const formattedPrice = displayCurrency === "IQD" ? 
+                    `${displayPrice.toLocaleString()} دينار` : 
+                    `$${displayPrice.toFixed(2)}`;
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${currentLanguage === 'ar' ? product.name : product.nameEn}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${currentLanguage === 'ar' ? product.name : product.nameEn}</div>
+                        <div class="product-description">${currentLanguage === 'ar' ? product.description : product.descriptionEn}</div>
+                        <div class="product-price">${formattedPrice}</div>
+                        <button class="add-to-cart">${currentLanguage === 'ar' ? 'أضف إلى السلة' : 'Add to Cart'}</button>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // إذا لم توجد منتجات تطابق البحث
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `<p style="grid-column: 1 / -1; text-align: center;">${currentLanguage === 'ar' ? 'لا توجد منتجات تطابق معايير البحث' : 'No products match your search criteria'}</p>`;
+            }
+        }
+
+        // فتح لوحة الإدارة
+        function openAdminPanel() {
+            document.getElementById('adminModal').style.display = 'block';
+            renderAdminProducts();
+            renderAdmins();
+        }
+
+        // إغلاق لوحة الإدارة
+        function closeAdminPanel() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        // عرض المنتجات في لوحة الإدارة
+        function renderAdminProducts() {
+            const productsList = document.getElementById('productsList');
+            productsList.innerHTML = '';
+            
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.style.cssText = 'border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 4px;';
+                
+                productItem.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${product.name}</strong> - ${product.category} - ${product.price} ${product.currency}
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary" onclick="editProduct(${product.id})">تعديل</button>
+                            <button class="btn btn-danger" onclick="deleteProduct(${product.id})">حذف</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsList.appendChild(productItem);
+            });
+        }
+
+        // عرض المسؤولين في لوحة الإدارة
+        function renderAdmins() {
+            const adminsList = document.getElementById('adminsList');
+            adminsList.innerHTML = '';
+            
+            admins.forEach(admin => {
+                const adminItem = document.createElement('div');
+                adminItem.className = 'admin-item';
+                adminItem.style.cssText = 'border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 4px;';
+                
+                adminItem.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${admin.name}</strong> - ${admin.email} - ${admin.role}
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary" onclick="editAdmin(${admin.id})">تعديل</button>
+                            <button class="btn btn-danger" onclick="deleteAdmin(${admin.id})">حذف</button>
+                        </div>
+                    </div>
+                `;
+                
+                adminsList.appendChild(adminItem);
+            });
+        }
+
+        // إضافة منتج جديد
+        function addProduct(e) {
+            e.preventDefault();
+            
+            const newProduct = {
+                id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
+                name: document.getElementById('productName').value,
+                nameEn: document.getElementById('productNameEn').value,
+                category: document.getElementById('productCategory').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                currency: document.getElementById('productCurrency').value,
+                description: document.getElementById('productDescription').value,
+                descriptionEn: document.getElementById('productDescriptionEn').value,
+                image: document.getElementById('productImage').value
+            };
+            
+            products.push(newProduct);
+            renderAdminProducts();
+            renderProducts();
+            document.getElementById('addProductForm').reset();
+            
+            alert(currentLanguage === 'ar' ? 'تمت إضافة المنتج بنجاح' : 'Product added successfully');
+        }
+
+        // إضافة مسؤول جديد
+        function addAdmin(e) {
+            e.preventDefault();
+            
+            const newAdmin = {
+                id: admins.length > 0 ? Math.max(...admins.map(a => a.id)) + 1 : 1,
+                name: document.getElementById('adminName').value,
+                email: document.getElementById('adminEmail').value,
+                role: document.getElementById('adminRole').value
+            };
+            
+            admins.push(newAdmin);
+            renderAdmins();
+            document.getElementById('addAdminForm').reset();
+            
+            alert(currentLanguage === 'ar' ? 'تمت إضافة المسؤول بنجاح' : 'Admin added successfully');
+        }
+
+        // تعديل منتج (وظيفة أساسية)
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productNameEn').value = product.nameEn;
+                document.getElementById('productCategory').value = product.category;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productCurrency').value = product.currency;
+                document.getElementById('productDescription').value = product.description;
+                document.getElementById('productDescriptionEn').value = product.descriptionEn;
+                document.getElementById('productImage').value = product.image;
+                
+                // حذف المنتج القديم
+                deleteProduct(id, false);
+                
+                alert(currentLanguage === 'ar' ? 'يمكنك تعديل بيانات المنتج الآن' : 'You can now edit the product data');
+            }
+        }
+
+        // حذف منتج
+        function deleteProduct(id, showAlert = true) {
+            products = products.filter(p => p.id !== id);
+            renderAdminProducts();
+            renderProducts();
+            
+            if (showAlert) {
+                alert(currentLanguage === 'ar' ? 'تم حذف المنتج بنجاح' : 'Product deleted successfully');
+            }
+        }
+
+        // تعديل مسؤول (وظيفة أساسية)
+        function editAdmin(id) {
+            const admin = admins.find(a => a.id === id);
+            if (admin) {
+                document.getElementById('adminName').value = admin.name;
+                document.getElementById('adminEmail').value = admin.email;
+                document.getElementById('adminRole').value = admin.role;
+                
+                // حذف المسؤول القديم
+                deleteAdmin(id, false);
+                
+                alert(currentLanguage === 'ar' ? 'يمكنك تعديل بيانات المسؤول الآن' : 'You can now edit the admin data');
+            }
+        }
+
+        // حذف مسؤول
+        function deleteAdmin(id, showAlert = true) {
+            admins = admins.filter(a => a.id !== id);
+            renderAdmins();
+            
+            if (showAlert) {
+                alert(currentLanguage === 'ar' ? 'تم حذف المسؤول بنجاح' : 'Admin deleted successfully');
+            }
+        }
+    </script>
+</body>
+</html>
